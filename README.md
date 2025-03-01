@@ -88,7 +88,7 @@ The application will be available at http://localhost:8000
 
 - `GET /`: Returns a simple Hello World message
 - `GET /hello/{name}`: Returns a personalized greeting with the provided name
-- `GET /openai`: Returns a response from OpenAI's chat completion API
+- `GET /openai`: Returns a response from OpenAI's chat completion API (accepts an optional `prompt` query parameter)
 - `GET /docs`: Swagger UI documentation
 - `GET /redoc`: ReDoc documentation
 
@@ -124,15 +124,19 @@ curl http://127.0.0.1:8000/
 # Get personalized greeting
 curl http://127.0.0.1:8000/hello/John
 
-# Get OpenAI chat completion
+# Get OpenAI chat completion with default prompt
 curl http://127.0.0.1:8000/openai
+
+# Get OpenAI chat completion with custom prompt
+curl "http://127.0.0.1:8000/openai?prompt=Tell%20me%20a%20joke%20about%20programming"
 ```
 
 ### Using a web browser
 
 - Open http://127.0.0.1:8000/ in your browser for the Hello World message
 - Open http://127.0.0.1:8000/hello/John in your browser for a personalized greeting
-- Open http://127.0.0.1:8000/openai in your browser to get a response from OpenAI
+- Open http://127.0.0.1:8000/openai in your browser to get a response from OpenAI with the default prompt
+- Open http://127.0.0.1:8000/openai?prompt=What%20is%20FastAPI? in your browser to get a response about FastAPI
 - Open http://127.0.0.1:8000/docs for the Swagger UI documentation
 
 ## Development

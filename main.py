@@ -21,7 +21,7 @@ async def say_hello(name: str):
 
 
 @app.get("/openai")
-async def openai_completion():
+async def openai_completion(prompt: Optional[str] = "Say hello world from AI!"):
     # Get API key from environment variable
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
@@ -31,12 +31,12 @@ async def openai_completion():
     client = OpenAI(api_key=api_key)
     
     try:
-        # Make a simple chat completion request
+        # Make a chat completion request with the provided prompt
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": "Say hello world from AI!"}
+                {"role": "user", "content": prompt}
             ]
         )
         
