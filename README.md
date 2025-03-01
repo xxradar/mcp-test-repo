@@ -6,12 +6,14 @@ A simple Hello World API built with FastAPI.
 
 - Root endpoint that returns a Hello World message
 - Dynamic greeting endpoint that takes a name parameter
+- OpenAI integration for AI-powered chat completions
 - Automatic API documentation with Swagger UI
 
 ## Prerequisites
 
 - Python 3.7+ (for local setup)
 - pip (Python package installer)
+- OpenAI API key (for the `/openai` endpoint)
 - Docker (optional, for containerized setup)
 
 ## Setup Instructions
@@ -86,8 +88,30 @@ The application will be available at http://localhost:8000
 
 - `GET /`: Returns a simple Hello World message
 - `GET /hello/{name}`: Returns a personalized greeting with the provided name
+- `GET /openai`: Returns a response from OpenAI's chat completion API
 - `GET /docs`: Swagger UI documentation
 - `GET /redoc`: ReDoc documentation
+
+## OpenAI Integration
+
+The `/openai` endpoint requires an OpenAI API key to be set as an environment variable:
+
+### Local Setup
+
+```bash
+# Set the OpenAI API key as an environment variable
+export OPENAI_API_KEY=your_api_key_here
+
+# Run the application
+uvicorn main:app --reload
+```
+
+### Docker Setup
+
+```bash
+# Run the Docker container with the OpenAI API key
+docker run -p 8000:8000 -e OPENAI_API_KEY=your_api_key_here fastapi-hello-world
+```
 
 ## Example Usage
 
@@ -99,12 +123,16 @@ curl http://127.0.0.1:8000/
 
 # Get personalized greeting
 curl http://127.0.0.1:8000/hello/John
+
+# Get OpenAI chat completion
+curl http://127.0.0.1:8000/openai
 ```
 
 ### Using a web browser
 
 - Open http://127.0.0.1:8000/ in your browser for the Hello World message
 - Open http://127.0.0.1:8000/hello/John in your browser for a personalized greeting
+- Open http://127.0.0.1:8000/openai in your browser to get a response from OpenAI
 - Open http://127.0.0.1:8000/docs for the Swagger UI documentation
 
 ## Development

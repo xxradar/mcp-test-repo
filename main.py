@@ -1,4 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+import os
+from openai import OpenAI
+from typing import Optional
 
 app = FastAPI(
     title="Hello World API",
@@ -15,6 +18,35 @@ async def root():
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
+
+
+@app.get("/openai")
+async def openai_completion():
+    # Get API key from environment variable
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="OpenAI API key not found in environment variables")
+    
+    # Initialize OpenAI client
+    client = OpenAI(api_key=api_key)
+    
+    try:
+        # Make a simple chat completion request
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "Say hello world from AI!"}
+            ]
+        )
+        
+        # Return the response
+        return {
+            "message": response.choices[0].message.content,
+            "model": response.model
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error from OpenAI API: {str(e)}")
 
 
 if __name__ == "__main__":
