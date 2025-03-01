@@ -6,7 +6,7 @@ A simple Hello World API built with FastAPI.
 
 - Root endpoint that returns a Hello World message
 - Dynamic greeting endpoint that takes a name parameter
-- OpenAI integration for AI-powered chat completions
+- OpenAI integration with GPT-4o for advanced AI-powered chat completions
 - Automatic API documentation with Swagger UI
 
 ## Prerequisites
@@ -88,13 +88,13 @@ The application will be available at http://localhost:8000
 
 - `GET /`: Returns a simple Hello World message
 - `GET /hello/{name}`: Returns a personalized greeting with the provided name
-- `GET /openai`: Returns a response from OpenAI's chat completion API (accepts an optional `prompt` query parameter)
+- `GET /openai`: Returns a response from OpenAI's GPT-4o model (accepts an optional `prompt` query parameter)
 - `GET /docs`: Swagger UI documentation
 - `GET /redoc`: ReDoc documentation
 
 ## OpenAI Integration
 
-The `/openai` endpoint requires an OpenAI API key to be set as an environment variable:
+The `/openai` endpoint uses OpenAI's GPT-4o model and requires an OpenAI API key to be set as an environment variable:
 
 ### Local Setup
 
