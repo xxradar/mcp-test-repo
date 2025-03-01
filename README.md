@@ -10,21 +10,24 @@ A simple Hello World API built with FastAPI.
 
 ## Prerequisites
 
-- Python 3.7+
+- Python 3.7+ (for local setup)
 - pip (Python package installer)
+- Docker (optional, for containerized setup)
 
 ## Setup Instructions
 
-Follow these steps to set up and run the FastAPI application:
+You can run this application either locally or using Docker.
 
-### 1. Clone the repository
+### Local Setup
+
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/xxradar/mcp-test-repo.git
 cd mcp-test-repo
 ```
 
-### 2. Create a virtual environment (optional but recommended)
+#### 2. Create a virtual environment (optional but recommended)
 
 ```bash
 # On macOS/Linux
@@ -36,13 +39,13 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+#### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run the application
+#### 4. Run the application
 
 ```bash
 uvicorn main:app --reload
@@ -55,6 +58,29 @@ Alternatively, you can run the application directly with Python:
 ```bash
 python main.py
 ```
+
+### Docker Setup
+
+#### 1. Clone the repository
+
+```bash
+git clone https://github.com/xxradar/mcp-test-repo.git
+cd mcp-test-repo
+```
+
+#### 2. Build the Docker image
+
+```bash
+docker build -t fastapi-hello-world .
+```
+
+#### 3. Run the Docker container
+
+```bash
+docker run -p 8000:8000 fastapi-hello-world
+```
+
+The application will be available at http://localhost:8000
 
 ## API Endpoints
 
