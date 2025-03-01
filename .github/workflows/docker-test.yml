@@ -37,7 +37,7 @@ jobs:
       with:
         name: docker-image
         path: image-artifact/app-image.tar
-        retention-days: 7
+        retention-days: 
         
     - name: Run Docker container
       run: |
